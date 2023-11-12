@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=2 format=3 uid="uid://cr8n0uhhxph8u"]
+
+[ext_resource type="Script" path="res://BattleSystem/Abilities/ability_data.gd" id="1_44f3n"]
+
+[resource]
+script = ExtResource("1_44f3n")
+alias = "kick"
+chargeUpTime = 1.0
+actionTime = 3.0
+coolDownTime = 1.0

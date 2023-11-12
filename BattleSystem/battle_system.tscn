@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://digt2xoplo7gv"]
+
+[ext_resource type="Script" path="res://BattleSystem/battle_system.gd" id="1_0xd58"]
+[ext_resource type="Resource" uid="uid://bwrnem1ca2337" path="res://BattleSystem/BattleActors/skeleton.tres" id="2_oq5xb"]
+[ext_resource type="Texture2D" uid="uid://y2l4v2bkbcvt" path="res://BattleSystem/Backgrounds/free_harpg_background_by_accaliarose_db5nnd7-fullview.jpeg" id="3_qsjo0"]
+[ext_resource type="Resource" uid="uid://cydm0reprs2pn" path="res://BattleSystem/BattleActors/player.tres" id="5_17io4"]
+
+[node name="BattleSystem" type="Node2D"]
+script = ExtResource("1_0xd58")
+playerData = ExtResource("5_17io4")
+enemyData = ExtResource("2_oq5xb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 101)
+scale = Vector2(0.91, 0.91)
+texture = ExtResource("3_qsjo0")
+
+[node name="LeftSide" type="Node2D" parent="."]
+position = Vector2(-300, 50)
+
+[node name="RightSide" type="Node2D" parent="."]
+position = Vector2(300, 50)
+
+[node name="Camera2D" type="Camera2D" parent="."]

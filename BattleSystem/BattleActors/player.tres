@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BattleActorData" load_steps=5 format=3 uid="uid://cydm0reprs2pn"]
+
+[ext_resource type="Resource" uid="uid://cr8n0uhhxph8u" path="res://BattleSystem/Abilities/kick.tres" id="1_g1wti"]
+[ext_resource type="Script" path="res://BattleSystem/BattleActors/battle_actor_data.gd" id="1_sup1d"]
+[ext_resource type="Resource" uid="uid://dupiwtnklef5o" path="res://BattleSystem/Abilities/punch.tres" id="2_opgdm"]
+[ext_resource type="Texture2D" uid="uid://b8ya8t1k2o2sp" path="res://Characters/PIPOYA FREE RPG Character Sprites 32x32/Male/Male 02-1.png" id="4_6tbft"]
+
+[resource]
+script = ExtResource("1_sup1d")
+alias = "Player"
+sprite = ExtResource("4_6tbft")
+abilitiyLevels = {
+ExtResource("1_g1wti"): 1,
+ExtResource("2_opgdm"): 1
+}

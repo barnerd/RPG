@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BattleActorData" load_steps=5 format=3 uid="uid://bwrnem1ca2337"]
+
+[ext_resource type="Script" path="res://BattleSystem/BattleActors/battle_actor_data.gd" id="1_swhdc"]
+[ext_resource type="Resource" uid="uid://cr8n0uhhxph8u" path="res://BattleSystem/Abilities/kick.tres" id="1_x8oc6"]
+[ext_resource type="Resource" uid="uid://dupiwtnklef5o" path="res://BattleSystem/Abilities/punch.tres" id="2_1a5mp"]
+[ext_resource type="Texture2D" uid="uid://bb2fwfegviov3" path="res://Characters/PIPOYA FREE RPG Character Sprites 32x32/Enemy/Enemy 04-1.png" id="4_1l41f"]
+
+[resource]
+script = ExtResource("1_swhdc")
+alias = "skeleton"
+sprite = ExtResource("4_1l41f")
+abilitiyLevels = {
+ExtResource("2_1a5mp"): 1,
+ExtResource("1_x8oc6"): 1
+}

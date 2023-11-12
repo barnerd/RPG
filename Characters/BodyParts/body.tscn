@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://tps83qt60vxi"]
+
+[ext_resource type="Texture2D" uid="uid://ca0li6lgrbhug" path="res://sprites/Roguelike Characters Pack/Spritesheet/roguelikeChar_transparent.png" id="1_okj1g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nreda"]
+atlas = ExtResource("1_okj1g")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrgrp"]
+atlas = ExtResource("1_okj1g")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lpjtp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nreda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrgrp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Body" type="AnimatedSprite2D"]
+z_index = 2
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_lpjtp")
+autoplay = "default"
+frame_progress = 0.303063

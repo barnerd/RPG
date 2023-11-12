@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://byt2dae4hi771"]
+
+[ext_resource type="Texture2D" uid="uid://ca0li6lgrbhug" path="res://sprites/Roguelike Characters Pack/Spritesheet/roguelikeChar_transparent.png" id="1_44bes"]
+
+[node name="Weapon" type="Sprite2D"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(-5.5, 4.5)
+texture = ExtResource("1_44bes")
+offset = Vector2(5.5, -4.5)
+region_enabled = true
+region_rect = Rect2(714, 102, 16, 16)

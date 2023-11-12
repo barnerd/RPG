@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhsm2bdbuvd2q"]
+
+[ext_resource type="Texture2D" uid="uid://ca0li6lgrbhug" path="res://sprites/Roguelike Characters Pack/Spritesheet/roguelikeChar_transparent.png" id="1_pc16v"]
+
+[node name="Helmet" type="Sprite2D"]
+z_index = 2
+y_sort_enabled = true
+texture = ExtResource("1_pc16v")
+region_enabled = true
+region_rect = Rect2(510, 34, 16, 16)
