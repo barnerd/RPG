@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyjum0l472fs2"]
+
+[ext_resource type="Script" path="res://BattleSystem/AbilityButtonUI.gd" id="1_ke1ji"]
+
+[node name="Button" type="Button"]
+offset_left = 38.0
+offset_top = 23.0
+offset_right = 110.0
+offset_bottom = 54.0
+text = "Ability A"
+script = ExtResource("1_ke1ji")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

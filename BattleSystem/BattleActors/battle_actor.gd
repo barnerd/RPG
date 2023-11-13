@@ -10,6 +10,10 @@ const abilityScene = preload("res://BattleSystem/Abilities/ability.tscn")
 var abilities: Array[Ability]
 var active_ability: Ability
 
+var battle_group: BattleSystem.Battle_Group
+
+signal battleUI_ability_required(actor: BattleActor)
+
 
 func _ready() -> void:
 	$Sprite2D.set_texture(data.sprite)
@@ -35,19 +39,35 @@ func generate_ability_nodes(_battle_system: BattleSystem) -> void:
 
 
 func pick_ability() -> void:
-	active_ability = null
+	print("this is an " + BattleSystem.Battle_Group.keys()[battle_group])
+	# if battle_group = Player, then pause battle and launch UI
+	if battle_group == BattleSystem.Battle_Group.ENEMY:
+		active_ability = AI_pick_ability()
+		if not active_ability:
+			print("no ability to pick")
+		start_ability()
+	else:
+		print("battleUI_ability_required emit")
+		battleUI_ability_required.emit(self)
+
+
+func AI_pick_ability() -> Ability:
+	var new_ability = null
 	for i in abilities:
 		if i.state == AbilityData.State.IDLE:
-			active_ability = i
-			print(data.alias + " picked " + active_ability.data.alias)
+			new_ability = i
+			print(data.alias + " picked " + new_ability.data.alias)
 			break
-	if not active_ability:
-		print("no ability to pick")
-	update_UI()
-	active_ability.start_ability()
+	return new_ability
 
 
-func update_UI() -> void:
+func start_ability() -> void:
+	if active_ability:
+		update_abilitybar_UI()
+		active_ability.start_ability()
+
+
+func update_abilitybar_UI() -> void:
 	if active_ability:
 		$AbilityPanel/ProgressBar.timer = active_ability.timer
 		$AbilityPanel/Name.text = active_ability.data.alias

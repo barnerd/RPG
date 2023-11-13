@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://digt2xoplo7gv"]
+[gd_scene load_steps=6 format=3 uid="uid://digt2xoplo7gv"]
 
 [ext_resource type="Script" path="res://BattleSystem/battle_system.gd" id="1_0xd58"]
 [ext_resource type="Resource" uid="uid://bwrnem1ca2337" path="res://BattleSystem/BattleActors/skeleton.tres" id="2_oq5xb"]
 [ext_resource type="Texture2D" uid="uid://y2l4v2bkbcvt" path="res://BattleSystem/Backgrounds/free_harpg_background_by_accaliarose_db5nnd7-fullview.jpeg" id="3_qsjo0"]
 [ext_resource type="Resource" uid="uid://cydm0reprs2pn" path="res://BattleSystem/BattleActors/player.tres" id="5_17io4"]
+[ext_resource type="Script" path="res://BattleSystem/AbilitySelectorUI.gd" id="5_xhmmf"]
 
 [node name="BattleSystem" type="Node2D"]
 script = ExtResource("1_0xd58")
@@ -22,3 +23,25 @@ position = Vector2(-300, 50)
 position = Vector2(300, 50)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Pause Button" type="Button" parent="."]
+offset_left = 343.0
+offset_top = -222.0
+offset_right = 398.0
+offset_bottom = -191.0
+text = "Pause"
+
+[node name="AbilitySelectorUI" type="PanelContainer" parent="."]
+visible = false
+offset_left = -415.0
+offset_top = 148.0
+offset_right = -106.0
+offset_bottom = 229.0
+script = ExtResource("5_xhmmf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AbilitySelectorUI"]
+layout_mode = 2
+alignment = 1
+
+[connection signal="pressed" from="Pause Button" to="." method="flip_paused"]
+[connection signal="ability_selected" from="AbilitySelectorUI" to="." method="on_ability_button_pressed"]
