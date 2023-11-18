@@ -1,2 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
+# Does not ignore the Resources UID cache file
+!.godot/uid_cache.bin
