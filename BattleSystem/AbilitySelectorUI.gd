@@ -1,6 +1,6 @@
 extends PanelContainer
 
-const ability_button_scene = preload("res://BattleSystem/battleUI_player_ability_button.tscn")
+@export var ability_button_scene: Resource
 var current_actor: BattleActor
 
 signal ability_selected(ability: Ability)

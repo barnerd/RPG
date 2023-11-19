@@ -1,15 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://digt2xoplo7gv"]
+[gd_scene load_steps=8 format=3 uid="uid://digt2xoplo7gv"]
 
 [ext_resource type="Script" path="res://BattleSystem/battle_system.gd" id="1_0xd58"]
 [ext_resource type="Resource" uid="uid://bwrnem1ca2337" path="res://BattleSystem/BattleActors/skeleton.tres" id="2_oq5xb"]
 [ext_resource type="Texture2D" uid="uid://y2l4v2bkbcvt" path="res://BattleSystem/Backgrounds/free_harpg_background_by_accaliarose_db5nnd7-fullview.jpeg" id="3_qsjo0"]
+[ext_resource type="PackedScene" uid="uid://biq4aservwr5r" path="res://BattleSystem/BattleActors/battle_actor.tscn" id="4_sdqh8"]
 [ext_resource type="Resource" uid="uid://cydm0reprs2pn" path="res://BattleSystem/BattleActors/player.tres" id="5_17io4"]
 [ext_resource type="Script" path="res://BattleSystem/AbilitySelectorUI.gd" id="5_xhmmf"]
+[ext_resource type="PackedScene" uid="uid://cyjum0l472fs2" path="res://BattleSystem/battleUI_player_ability_button.tscn" id="7_a6yyw"]
 
 [node name="BattleSystem" type="Node2D"]
 script = ExtResource("1_0xd58")
 playerData = ExtResource("5_17io4")
 enemyData = ExtResource("2_oq5xb")
+battleActorScene = ExtResource("4_sdqh8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 101)
@@ -38,6 +41,7 @@ offset_top = 148.0
 offset_right = -106.0
 offset_bottom = 229.0
 script = ExtResource("5_xhmmf")
+ability_button_scene = ExtResource("7_a6yyw")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="AbilitySelectorUI"]
 layout_mode = 2

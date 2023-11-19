@@ -1,7 +1,6 @@
-extends Node2D
-class_name BattleActor
+class_name BattleActor extends Node2D
 
-const abilityScene = preload("res://BattleSystem/Abilities/ability.tscn")
+@export var abilityScene: Resource
 
 # used to store multiples. i.e. Skeleton A, Skeleton B
 @export var alias: String

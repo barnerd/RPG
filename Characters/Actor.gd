@@ -1,5 +1,4 @@
-class_name Actor
-extends CharacterBody2D
+class_name Actor extends CharacterBody2D
 
 @export var speed = 100 # How fast the player will move (pixels/sec).
 @export var acceleration = 100 # How fast the player will speed up (pixels/sec).

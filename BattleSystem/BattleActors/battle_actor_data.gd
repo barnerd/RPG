@@ -1,5 +1,4 @@
-extends Resource
-class_name BattleActorData
+class_name BattleActorData extends Resource
 
 @export var alias: String
 @export var sprite: Texture2D

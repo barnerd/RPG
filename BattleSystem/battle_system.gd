@@ -1,5 +1,4 @@
-extends Node2D
-class_name BattleSystem
+class_name BattleSystem extends Node2D
 
 signal battle_started()
 signal battle_paused(value: bool)
@@ -7,7 +6,7 @@ signal battle_ended()
 
 @export var playerData: BattleActorData # change to BattleActor later
 @export var enemyData: BattleActorData # change to BattleActor later
-const battleActorScene = preload("res://BattleSystem/BattleActors/battle_actor.tscn")
+@export var battleActorScene: Resource
 
 var paused: bool: set = set_paused
 

@@ -1,5 +1,4 @@
-extends Resource
-class_name AbilityData
+class_name AbilityData extends Resource
 
 @export var alias: String
 

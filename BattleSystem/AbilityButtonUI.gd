@@ -1,5 +1,4 @@
-extends Button
-class_name AbilityButtonUI
+class_name AbilityButtonUI extends Button
 
 var ability: Ability
 

@@ -1,5 +1,4 @@
-extends Node
-class_name Ability
+class_name Ability extends Node
 
 @export var data: AbilityData
 
