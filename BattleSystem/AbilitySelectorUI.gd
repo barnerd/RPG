@@ -13,11 +13,11 @@ func generate_ability_buttons(actor: BattleActor) -> void:
 	for i in actor.abilities:
 		var instance = ability_button_scene.instantiate() as AbilityButtonUI
 		instance.update_ability_data(i)
-		instance.ability_button_pressed.connect(on_ability_button_pressed)
+		instance.ability_button_pressed.connect(_on_ability_button_pressed)
 		$HBoxContainer.add_child(instance)
 
 
-func on_ability_button_pressed(ability: Ability) -> void:
+func _on_ability_button_pressed(ability: Ability) -> void:
 	current_actor.active_ability = ability
 	current_actor.start_ability()
 	# destory ability_buttons

@@ -11,6 +11,12 @@ signal battle_ended()
 var paused: bool: set = set_paused
 
 enum Battle_Group {PLAYER, ENEMY}
+var battle_actors_by_group = {}
+
+func _init() -> void:
+	var new_array: Array[BattleActor] = []
+	battle_actors_by_group[Battle_Group.PLAYER] = new_array.duplicate(false)
+	battle_actors_by_group[Battle_Group.ENEMY] = new_array.duplicate(false)
 
 
 func _ready() -> void:
@@ -28,8 +34,11 @@ func set_paused(value: bool) -> void:
 	battle_paused.emit(paused)
 
 
-func flip_paused() -> void:
+func _on_pause_button_pressed() -> void:
 	paused = not paused
+	print(get_battle_actors_by_group())
+	print(get_battle_actors_from_group(Battle_Group.PLAYER))
+	print(get_battle_actors_from_group(Battle_Group.ENEMY))
 
 
 func generate_battle_actor(_data: BattleActorData, _left_side: bool) -> void:
@@ -41,21 +50,35 @@ func generate_battle_actor(_data: BattleActorData, _left_side: bool) -> void:
 	battle_started.connect(instance.pick_ability)
 	if _left_side:
 		instance.battle_group = Battle_Group.PLAYER
+		battle_actors_by_group[Battle_Group.PLAYER].push_back(instance)
 		$LeftSide.add_child(instance)
 	else:
 		instance.battle_group = Battle_Group.ENEMY
+		battle_actors_by_group[Battle_Group.ENEMY].push_back(instance)
 		$RightSide.add_child(instance)
 
 
 func on_battleUI_ability_required(actor: BattleActor) -> void:
-	flip_paused()
+	set_paused(true)
 	print("need to pick ability and launch UI")
 	$AbilitySelectorUI.generate_ability_buttons(actor)
 	$AbilitySelectorUI.visible = true
 
 
-func on_ability_button_pressed(_ability: Ability) -> void:
+func _on_ability_button_pressed(_ability: Ability) -> void:
 	paused = false
+
+
+func get_target_selected() -> BattleActor:
+	return null
+
+
+func get_battle_actors_from_group(_side: Battle_Group) -> Array[BattleActor]:
+	return battle_actors_by_group[_side]
+
+
+func get_battle_actors_by_group() -> Dictionary:
+	return battle_actors_by_group.duplicate(true)
 
 
 # signal for death?
