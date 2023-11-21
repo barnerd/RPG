@@ -14,9 +14,8 @@ enum Battle_Group {PLAYER, ENEMY}
 var battle_actors_by_group = {}
 
 func _init() -> void:
-	var new_array: Array[BattleActor] = []
-	battle_actors_by_group[Battle_Group.PLAYER] = new_array.duplicate(false)
-	battle_actors_by_group[Battle_Group.ENEMY] = new_array.duplicate(false)
+	battle_actors_by_group[Battle_Group.PLAYER] = [] as Array[BattleActor]
+	battle_actors_by_group[Battle_Group.ENEMY] = [] as Array[BattleActor]
 
 
 func _ready() -> void:
