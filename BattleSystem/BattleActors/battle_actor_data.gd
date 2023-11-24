@@ -8,4 +8,5 @@ class_name BattleActorData extends Resource
 @export_group("Stats")
 @export var max_health: int
 @export var max_strength: int
+@export var max_dexterity: int
 @export var max_constitution: int

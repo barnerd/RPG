@@ -14,6 +14,9 @@ var active_ability: Ability
 @export var current_strength: int: set = set_current_strength
 var str: int: 
 	get: return current_strength
+@export var current_dexterity: int: set = set_current_dexterity
+var dex: int: 
+	get: return current_dexterity
 @export var current_constitution: int: set = set_current_constitution
 var con: int:
 	get: return current_constitution
@@ -35,6 +38,7 @@ func set_data(_data: BattleActorData) -> void:
 	data = _data
 	current_health = data.max_health
 	current_strength = data.max_strength
+	current_dexterity = data.max_dexterity
 	current_constitution = data.max_constitution
 
 
@@ -46,6 +50,10 @@ func set_current_health(_value: int) -> void:
 
 func set_current_strength(_value: int) -> void:
 	current_strength = _value
+
+
+func set_current_dexterity(_value: int) -> void:
+	current_dexterity = _value
 
 
 func set_current_constitution(_value: int) -> void:
@@ -78,19 +86,18 @@ func generate_ability_nodes(_battle_system: BattleSystem) -> void:
 		abilities.append(instance)
 		instance.ability_finished.connect(pick_ability)
 		instance.ability_state_changed.connect(update_state_UI)
+		instance.ability_performed.connect(_battle_system.combat_calculator.ability_performed)
 		add_child(instance)
 
 
 func pick_ability() -> void:
-	print("this is an " + BattleSystem.Battle_Group.keys()[battle_group])
-	# if battle_group = Player, then pause battle and launch UI
 	if battle_group == BattleSystem.Battle_Group.ENEMY:
 		active_ability = AI_pick_ability()
 		if not active_ability:
 			print("no ability to pick")
 		start_ability()
 	else:
-		print("battleUI_ability_required emit")
+		# print("battleUI_ability_required emit")
 		battleUI_ability_required.emit(self)
 
 

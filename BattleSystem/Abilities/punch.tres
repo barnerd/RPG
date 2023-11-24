@@ -8,4 +8,4 @@ alias = "punch"
 chargeUpTime = 0.5
 actionTime = 1.0
 coolDownTime = 1.0
-damage = 11.0
+damage = 1.0

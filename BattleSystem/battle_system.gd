@@ -10,6 +10,8 @@ signal battle_lost()
 @export var enemyData: BattleActorData # change to BattleActor later
 @export var battleActorScene: Resource
 
+@onready var combat_calculator = $"Combat Calculator"
+
 var paused: bool: set = set_paused
 
 enum Battle_Group {PLAYER, ENEMY}
@@ -31,7 +33,7 @@ func _ready() -> void:
 
 func set_paused(value: bool) -> void:
 	paused = value
-	print ("paused: " + ("True" if paused else "False"))
+	# print ("paused: " + ("True" if paused else "False"))
 	# call signal to pause/unpause battle elements
 	battle_paused.emit(paused)
 
@@ -82,7 +84,6 @@ func on_actor_died(_actor: BattleActor) -> void:
 
 func on_battleUI_ability_required(_actor: BattleActor) -> void:
 	set_paused(true)
-	print("need to pick ability and launch UI")
 	$AbilitySelectorUI.generate_ability_buttons(_actor)
 
 

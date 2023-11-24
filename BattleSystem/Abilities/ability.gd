@@ -10,6 +10,7 @@ var targets: Array[BattleActor]: set = set_targets
 
 signal ability_finished()
 signal ability_state_changed(ability: Ability, old_state: AbilityData.State, new_state: AbilityData.State)
+signal ability_performed(actor: BattleActor, ability: Ability, targets: Array[BattleActor])
 
 
 func _init() -> void:
@@ -52,12 +53,7 @@ func stop_ability() -> void:
 
 
 func perform_ability_action() -> void:
-	#print("targets: length: "+str(targets.size())+", targets: ")
-	#print(targets)
-	# consider moving this to a combat script
-	var damage_done = (data.damage + actor.str) - targets[0].con
-	print(actor.alias + " used "+data.alias+" for "+str(damage_done)+" damage to " + targets[0].alias)
-	targets[0].take_damage(data.damage)
+	ability_performed.emit(actor, self, targets)
 
 
 func set_targets(_targets: Array[BattleActor]) -> void:
