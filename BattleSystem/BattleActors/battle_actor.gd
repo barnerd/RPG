@@ -5,19 +5,62 @@ class_name BattleActor extends Node2D
 # used to store multiples. i.e. Skeleton A, Skeleton B
 @export var alias: String
 
-@export var data: BattleActorData
+@export var data: BattleActorData: set = set_data
 var abilities: Array[Ability]
 var active_ability: Ability
 
+@export_group("Stats")
+@export var current_health: int: set = set_current_health
+@export var current_strength: int: set = set_current_strength
+var str: int: 
+	get: return current_strength
+@export var current_constitution: int: set = set_current_constitution
+var con: int:
+	get: return current_constitution
 var battle_group: BattleSystem.Battle_Group
+var battle_system: BattleSystem
 
 signal battleUI_ability_required(actor: BattleActor)
+signal health_changed(old_value:int, new_value:int)
+signal actor_died(actor: BattleActor)
 
 
 func _ready() -> void:
 	$Sprite2D.set_texture(data.sprite)
 	$Sprite2D.set_hframes(3)
 	$Sprite2D.set_vframes(4)
+
+
+func set_data(_data: BattleActorData) -> void:
+	data = _data
+	current_health = data.max_health
+	current_strength = data.max_strength
+	current_constitution = data.max_constitution
+
+
+func set_current_health(_value: int) -> void:
+	var old_health = current_health
+	current_health = _value
+	health_changed.emit(old_health, current_health)
+
+
+func set_current_strength(_value: int) -> void:
+	current_strength = _value
+
+
+func set_current_constitution(_value: int) -> void:
+	current_constitution = _value
+
+
+func take_damage(_damage: int) -> void:
+	current_health -= _damage
+	if current_health <= 0:
+		_actor_death()
+
+
+func _actor_death() -> void:
+	actor_died.emit(self)
+	queue_free()
 
 
 func face_left(_left: bool = true) -> void:
@@ -30,6 +73,7 @@ func generate_ability_nodes(_battle_system: BattleSystem) -> void:
 		# i is ablityData; data.abilitiyLevels[i] is the level
 		var instance = abilityScene.instantiate() as Ability
 		instance.data = i
+		instance.actor = self
 		instance.connect_battle_system_signals(_battle_system)
 		abilities.append(instance)
 		instance.ability_finished.connect(pick_ability)
@@ -57,7 +101,21 @@ func AI_pick_ability() -> Ability:
 			new_ability = i
 			print(data.alias + " picked " + new_ability.data.alias)
 			break
+	
+	# set targets
+	var targets
+	var all_actors = battle_system.get_battle_actors_by_group()
+	for i in all_actors.keys():
+		if i != battle_group:
+			targets = all_actors[i]
+	new_ability.set_targets(targets)
+
 	return new_ability
+
+
+func check_targets(_actor: BattleActor) -> void:
+	if active_ability.targets.find(_actor) != -1 && active_ability.state == AbilityData.State.CHARGE_UP:
+		active_ability.stop_ability()
 
 
 func start_ability() -> void:

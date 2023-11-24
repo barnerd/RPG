@@ -8,3 +8,4 @@ alias = "kick"
 chargeUpTime = 1.0
 actionTime = 3.0
 coolDownTime = 1.0
+damage = 3.0

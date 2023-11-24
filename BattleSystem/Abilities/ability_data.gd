@@ -4,7 +4,10 @@ class_name AbilityData extends Resource
 
 enum State {IDLE, CHARGE_UP, ACTION, COOLDOWN}
 
-@export_category("Timers")
+@export_group("Timers")
 @export var chargeUpTime: float
 @export var actionTime: float
 @export var coolDownTime: float
+
+@export_group("Function")
+@export var damage: float

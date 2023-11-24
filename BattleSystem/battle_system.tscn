@@ -47,5 +47,7 @@ ability_button_scene = ExtResource("7_a6yyw")
 layout_mode = 2
 alignment = 1
 
+[connection signal="battle_ended" from="." to="AbilitySelectorUI" method="enable_UI" binds= [false]]
+[connection signal="battle_started" from="." to="AbilitySelectorUI" method="enable_UI" binds= [true]]
 [connection signal="pressed" from="Pause Button" to="." method="_on_pause_button_pressed"]
 [connection signal="ability_selected" from="AbilitySelectorUI" to="." method="_on_ability_button_pressed"]

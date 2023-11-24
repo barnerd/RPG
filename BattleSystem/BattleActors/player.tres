@@ -13,3 +13,6 @@ abilitiyLevels = {
 ExtResource("1_g1wti"): 1,
 ExtResource("2_opgdm"): 1
 }
+max_health = 100
+max_strength = 5
+max_constitution = 5
