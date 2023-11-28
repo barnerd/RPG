@@ -6,8 +6,7 @@ signal battle_ended()
 signal battle_won()
 signal battle_lost()
 
-@export var playerData: BattleActorData # change to BattleActor later
-@export var enemyData: BattleActorData # change to BattleActor later
+@export var playerData: BattleActorData
 @export var battleActorScene: Resource
 
 @onready var combat_calculator = $"Combat Calculator"
@@ -25,9 +24,21 @@ func _init() -> void:
 
 func _ready() -> void:
 	# flash start banner and then emit
-	$AbilitySelectorUI.visible = false
 	generate_battle_actor(playerData, true)
-	generate_battle_actor(enemyData, false)
+	#_on_battle_start()
+
+
+func init_battle(_enemy_data: BattleActorData):
+	print("a new battle is upon us with " + _enemy_data.alias)
+	$AbilitySelectorUI.visible = false
+	$Camera2D.enabled = true
+	generate_battle_actor(_enemy_data, false)
+	_on_battle_start()
+
+
+func _on_battle_start() -> void:
+	self.visible = true
+	$Background.visible = true
 	battle_started.emit()
 
 
@@ -118,6 +129,8 @@ func _on_battle_loss() -> void:
 func _on_battle_end() -> void:
 	battle_ended.emit()
 	battle_paused.emit(true)
+	$Background.visible = false
+	$Camera2D.enabled = false
 
 
 # signal for death?

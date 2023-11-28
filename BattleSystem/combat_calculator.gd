@@ -35,6 +35,7 @@ func ability_performed(_actor: BattleActor, _ability: Ability, _targets: Array[B
 	# send out combat report
 	combat_activity_report_generated.emit(report)
 
+
 static func get_hit_chance(_attacker: float, _defender: float) -> float:
 	# TODO: this can divide by 0
 	return _attacker / (_attacker + _defender * 0.66) # 0-100%
@@ -97,4 +98,3 @@ class CombatActivityReport:
 		self.abilityData = _ability.data
 		
 		self.defender = _targets[0]
-

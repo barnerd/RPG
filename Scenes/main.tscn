@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc06kdxkqgour"]
+[gd_scene load_steps=4 format=3 uid="uid://bc06kdxkqgour"]
 
 [ext_resource type="PackedScene" uid="uid://coy0rs0laxn4e" path="res://Maps/testWorld.tscn" id="1_3qyct"]
 [ext_resource type="PackedScene" uid="uid://b7h67lyu432va" path="res://Characters/player.tscn" id="1_ikycm"]
+[ext_resource type="PackedScene" uid="uid://digt2xoplo7gv" path="res://BattleSystem/battle_system.tscn" id="3_sdv77"]
 
 [node name="Main" type="Node"]
 
 [node name="World" type="Node2D" parent="."]
 
 [node name="Player" parent="World" instance=ExtResource("1_ikycm")]
+is_player = true
 
 [node name="Camera2D" type="Camera2D" parent="World/Player"]
 zoom = Vector2(4, 4)
@@ -16,8 +18,15 @@ drag_vertical_enabled = true
 
 [node name="Map" parent="World" instance=ExtResource("1_3qyct")]
 
+[node name="BattleSystem" parent="." instance=ExtResource("3_sdv77")]
+visible = false
+z_index = 7
+
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[connection signal="player_collided_with_enemy" from="World/Player" to="BattleSystem" method="init_battle"]
+[connection signal="battle_ended" from="BattleSystem" to="World/Player" method="on_battle_over"]

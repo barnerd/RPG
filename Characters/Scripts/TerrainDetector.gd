@@ -3,8 +3,10 @@ extends Area2D
 @onready var actor: Actor = $".."
 
 func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if(body is TileMap):
+
+	if body is TileMap:
 		_process_tilemap_collision(body, body_rid)
+
 
 func _process_tilemap_collision(body: TileMap, body_rid: RID) -> void:
 	var speed_multiplier

@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://coy0rs0laxn4e"]
+[gd_scene load_steps=16 format=3 uid="uid://coy0rs0laxn4e"]
 
 [ext_resource type="Texture2D" uid="uid://l8kdcqnphq3v" path="res://sprites/Roguelike Dungeon Pack/Spritesheet/roguelikeDungeon_transparent.png" id="1_81hf1"]
 [ext_resource type="Texture2D" uid="uid://dt0pa8w2kjtml" path="res://sprites/Roguelike Base Pack/Spritesheet/roguelikeSheet_transparent.png" id="1_ybndy"]
 [ext_resource type="Texture2D" uid="uid://dj2ov5kay6f2i" path="res://sprites/Roguelike Interior Pack/Spritesheet/roguelikeIndoor_transparent.png" id="3_3eju1"]
 [ext_resource type="PackedScene" uid="uid://dro2o4810tqxc" path="res://Characters/orc.tscn" id="4_mx3m6"]
+[ext_resource type="Resource" uid="uid://bwrnem1ca2337" path="res://BattleSystem/BattleActors/skeleton.tres" id="5_v2mni"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_w0owp"]
 tile_data = PackedInt32Array(0, 983041, 10, 65536, 983041, 11)
@@ -19130,6 +19131,8 @@ layer_3/tile_data = PackedInt32Array()
 
 [node name="Orc" parent="Mobs" instance=ExtResource("4_mx3m6")]
 position = Vector2(176, 85)
+enemyData = ExtResource("5_v2mni")
 
 [node name="Orc2" parent="Mobs" instance=ExtResource("4_mx3m6")]
 position = Vector2(-96, 115)
+enemyData = ExtResource("5_v2mni")
